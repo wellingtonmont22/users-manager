@@ -1,28 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../model/user';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  users:User[] = [
-    {
-      id: 1,
-      email: 'well@mail.com'
-    },
-    {
-      id: 5,
-      email: 'x@mail.com'
-    }
-  ];
+  users: User[] = [];
   displayedColumns = ['id', 'email'];
 
-  constructor() { }
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
+    this.getAllUsers();
   }
 
+  getAllUsers(): void {
+    this.usersService.getAll().subscribe((res) => (this.users = res));
+  }
 }
