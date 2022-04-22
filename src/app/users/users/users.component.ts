@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 import { User } from '../model/user';
 import { UsersService } from '../services/users.service';
@@ -9,16 +12,23 @@ import { UsersService } from '../services/users.service';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  users: User[] = [];
+  users$: Observable<User[]>;
   displayedColumns = ['id', 'email'];
 
-  constructor(private usersService: UsersService) {}
-
-  ngOnInit(): void {
-    this.getAllUsers();
+  constructor(private usersService: UsersService, public dialog: MatDialog) {
+    this.users$ = this.usersService.getAll().pipe(
+      catchError((error) => {
+        this.onError('Erro ao carregar os cursos');
+        return of([]);
+      })
+    );
   }
 
-  getAllUsers(): void {
-    this.usersService.getAll().subscribe((res) => (this.users = res));
+  ngOnInit(): void {}
+
+  onError(errorMessage: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMessage,
+    });
   }
 }
