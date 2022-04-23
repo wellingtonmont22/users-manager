@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CompMaterialModule } from './shared/comp-material/componentes-material.module';
+import { CompMaterialModule } from './shared/components-material/componentes-material.module';
 
 @NgModule({
   declarations: [AppComponent],
