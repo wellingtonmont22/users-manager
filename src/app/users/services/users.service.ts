@@ -8,7 +8,7 @@ import { User } from '../model/user';
   providedIn: 'root',
 })
 export class UsersService {
-  private readonly api: string = 'http://localhost:5000/v1/users';
+  private readonly api: string = '/v1/users';
 
   constructor(private httpClient: HttpClient) {}
 
