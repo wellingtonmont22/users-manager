@@ -7,17 +7,19 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
+  hide: boolean = true;
+
   emailFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
-  senha: FormControl = new FormControl(
-    '',
+  passwordFormControl: FormControl = new FormControl('', [
+    Validators.required,
     Validators.pattern(
-      '/^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/'
-    )
-  );
+      '/^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$/'
+    ),
+  ]);
 
   constructor() {}
 

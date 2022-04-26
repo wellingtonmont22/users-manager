@@ -1,13 +1,13 @@
-<mat-card>
-  <form>
-    <form class="example-form">
-      <mat-form-field class="example-full-width" appearance="fill">
+<div class="container">
+  <mat-card>
+    <div class=".inputs-button">
+      <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input
           type="email"
           matInput
           [formControl]="emailFormControl"
-          placeholder="Ex. pat@example.com"
+          placeholder="Ex. user@example.com"
         />
         <mat-error
           *ngIf="
@@ -15,12 +15,50 @@
             !emailFormControl.hasError('required')
           "
         >
-          Please enter a valid email address
+          Insira um email válido.
         </mat-error>
         <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email is <strong>required</strong>
+          Email é <strong>requerido</strong>
         </mat-error>
       </mat-form-field>
-    </form>
-  </form>
-</mat-card>
+      <mat-form-field appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          [formControl]="passwordFormControl"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Mostrar Senha'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error
+          *ngIf="
+            passwordFormControl.hasError('pattern') &&
+            !passwordFormControl.hasError('required')
+          "
+        >
+          Insira uma senha válida.
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Senha é <strong>requerida</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-icon-button color="accent" aria-label="botão para enviar">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+    <ul>
+      <li>deve conter ao menos uma letra minúscula</li>
+      <li>deve conter ao menos uma letra maiúscula</li>
+      <li>deve conter ao menos um numero</li>
+      <li>deve conter ao menos um caractere especial</li>
+      <li>deve conter entre 6 e 15 dos caracteres mencionados</li>
+    </ul>
+  </mat-card>
+</div>

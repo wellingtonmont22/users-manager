@@ -1,8 +1,45 @@
-input.example-right-align::-webkit-outer-spin-button,
-input.example-right-align::-webkit-inner-spin-button {
-  display: none;
+.mat-form-field{
+  margin-left: 1%;
+  width: 12rem;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-input.example-right-align {
-  -moz-appearance: textfield;
+.mat-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+.inputs-button{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+@media screen and (max-width: 900px) {
+  ul{
+    display: none;
+  }
+  .mat-form-field{
+    width: 12rem;
+  }
+  .inputs-button{
+  
+    width: 60%;
+    height: 100%;
+  }
+  .mat-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 30%;
+  }
+  
 }
