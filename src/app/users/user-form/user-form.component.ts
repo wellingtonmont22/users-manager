@@ -17,7 +17,7 @@ export class UserFormComponent implements OnInit {
   passwordFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.pattern(
-      '/^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$/'
+      "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,50}$"
     ),
   ]);
 
